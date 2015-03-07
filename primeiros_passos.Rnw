@@ -1,0 +1,253 @@
+%%%Preambulo para o documento que escrevi, com algumas coisas que podem ser necessárias no preambulo final
+% \hypersetup{
+% citecolor=black,
+% pdftoolbar=true,
+% filecolor=black,
+% linkcolor=black,
+% urlcolor=black,
+% colorlinks=true,
+% linktoc=all,
+% linkcolor=blue
+% }
+% \renewcommand*{\familydefault}{\sfdefault}
+% \newcommand{\rstudio}{\textrm{Rstudio}}
+% \newcommand{\R}{\large{\textrm{R}}}
+
+\chapter{Escolha de um software estat\'istico - Apresenta\c{c}\~ao do software R}
+
+Agora j\'a aprendemos os conceitos de estat\'istica e sabemos os princ\'ipios gerais das principais an\'alises, podemos lan\c{c}ar m\~ao de um software para nos poupar de fazer as contas. Uma no\c{c}\~ao importante de termos em mente neste momento \'e que, independente do software de escolha, ele n\~ao vale de nada se voc\^e n\~ao souber contar em detalhes como a coisa foi feita. Portanto, independente da sua escolha, o melhor software \'e aquele que voc\^e domina o como e, principalmente, o porque das coisas. Dentre as diversas op\c{c}\~oes, h\'a softwares pagos e n\~ao pagos do mercado, de c\'odigo aberto e fechado e por a\'i vai. Optaremos por utilizar neste livro um software gratuito, de c\'odigo aberto e que conta com grande aceita\c{c}\~ao no meio cient\'ifico, utilizaremos o software R. 
+
+\begin{framed}
+Após este módulo você será capaz de:
+\begin{itemize}
+  \item entender o mecanismo de funcionamento geral do software R
+  \item aplicar os conceitos de objetos, vetores e matrizes para realiza\c{c}\~ao das an\'alises
+  \item realizar as principais opera\c{c}\~oes b\'asicas com os objetos
+\end{itemize}
+\end{framed}
+
+\newpage
+\section{No\c{c}\~oes gerais do software R}
+
+O software \R~\'e constru\'ido sob a licen\c{c}a GNU, de uso
+p\'ublico, desta forma o \R~\'e completamente gratuito e aberto \`a
+contribui\c{c}\~oes das mais diversas \footnote{Para mais detalhes sobre a licen\c{c}a, basta visitar o link \url{http://www.R-project.org/Licenses/}}. De forma geral, o software consiste de um
+\textit{core} relativamente simples de ferramentas estat\'isticas
+cl\'assicas. Entretanto, com o uso de \textit{pacotes}, o R pode ser
+expandido para os mais diversos usos imagin\'aveis, extendendo sua
+funcionalidade e flexibilidade para virtualmente todos os campos aonde
+podem-se aplicar ferramentas estat\'isticas. O chamado
+\textit{R-Project} \'e atualmente mantido por uma coopera\c{c}\~ao
+internacional (\R~Development Core Team), situado em Viena, na \'Austria.
+
+\subsection{Onde encontrar e fazer o download do \R}
+Os pacotes de instala\c{c}\~ao do R est\~ao dispon\'iveis para \emph{Linux}, \emph{OSX - Machintosh} e \emph{Windows}, portanto abrangendo os principais sistemas operacionais utilizados. O instalador pode ser baixado diretamente do \textit{CRAN - Comprehensive \R~Archive Network}, pelo site \url{http://cran.r-project.org}. Uma vez no site, basta escolher o sistema operacional que lhe interessa e baixar a \'ultima vers\~ao dispon\'ivel para download \footnote{No Linux, o \R pode ser instalado via \emph{Synaptic}. Para Windows, clique em \emph{base} e ent\~ao o \texttt{.exe} aparecer\'a.}. Para instalar o programa, \'recomend\'avel seguir o padr\~ao da instala\c{c}\~ao, apenas as modifique se estiver certo do que est\'a fazendo.
+
+\subsection{Quais plataformas rodam o \R?}
+O \R pode ser iniciado at\'e mesmo pelo terminal em sistemas UNIX (Mac e Linux). Entretanto, uma s\'erie de plataformas mais amig\'aveis permitem um uso mais 'suave' do programa, tendo acesso numa mesma tela aos ambientes de \textrm{Console} (o ambiente de an\'alises propriamente dito), bem como ao ambiente gr\'afico. Plataformas como o \textrm{(X)Emacs}, \textrm{RGui} e \textrm{TinnR} s\~ao bastante populares entre os usu\'arios de diferentes sistemas operacionais.\\
+\indent Recentemente com o desenvolvimento da plataforma \rstudio~e todas as suas funcionalidades, houve uma migra\c{c}\~ao em massa dos usu\'arios. O \rstudio, al\'em da vantagem de ser multi-sistemas, oferece um ambiente completo de trabalho, al\'em da automatiza\c{c}\~ao de uma s\'erie de tarefas. Entre as funcionalidades mais chamativas est\~ao o layout de janelas, a possibilidade de gravar diversos \textrm{plots} e a visualiza\c{c}\~ao direta do ambiente de trabalho. Al\'em destas vantagens, o \rstudio se integra muito bem com outras funcionalidades do R, como \textrm{Sweave} e \textrm{Knitr}. Para baixar o \rstudio, basta ir ao site \url{www.r-studio.org/IDE} e seguir as instru\c{c}\~oes de instala\c{c}\~ao. Esta apostila seguir\'a de agora em diante Uma outra plataforma est\'a dispon\'ivel, o \textrm{R-commander}, mas discutiremos em breve porque achamos esta plataforma uma op\c{c}\~ao ruim, considerando-se a filosofia do programa.
+
+\section{Primeiras defini\c{c}~oes e impress\~oes}
+
+\subsubsection{Como \'e a interface do programa dentro do \rstudio?}
+
+\begin{center}
+ \begin{figure} [h!]
+\begin{center}
+\includegraphics[width=.9\textwidth]{./fig/rface.jpg}
+\end{center}
+\caption{Interface inicial do \rstudio, como o usu\'ario o visualizar\'a pela primeira vez.}
+\label{fig01ChpR}
+ \end{figure}
+\end{center}
+
+\subsubsection{O uso pr\'atico do \R}
+Como pode ser visto na imagem, o \R funciona atrav\'es de linhas de comando que executam a\c{c}\~oes espec\'ificas, que podem ser agrupadas em fun\c{c}\~oes\footnote{Fun\c{c}\~oes s\~ao basicamente uma s\'erie determinada de f\'ormulas e comandos que podem ser criadas dentro do ambiente \R, mais pra frente discutiremos como cri\'a-las.}. Desta forma, o usu\'arios advindos de sistemas viciados no \emph{clique} ou WYSIWYG\footnote{Do ingl\^es, \emph{What You See Is What You Get.}} poder\~ao sentir alguma dificuldade nos primeiros momentos de contato com o sistema \R. Entretanto, a gama de possibilidades uma vez que se tem o dom\'inio b\'asico da linguagem de comandos \'e infinitamente mais ampla, especialmente se comparada a limita\c{c}\~ao imposta por alguns poucos \'icones. Portanto esta \'e a raz\~ao pela qual desencorajamos o uso de plataformas de clique ou mesmo ferramentas como o \texttt{R-commander}. Aprender a linguagem \R pode ser comparado \`a aprender um idioma novo, e n\~ao h\'a outra forma de se tornar fluente que sen\~ao o treino. Portanto, ainda que o ambiente lhe pare\c{c}a \'arido num primeiro momento, em pouco tempo de treino voc\^e domina a linguagem e tudo fica mais f\'acil.\\
+
+Um ponto importante merece aten\c{c}\~ao. Apesar do fato de que ao utilizar comandos voc\^e tem mais controle sobre o que est\'a executando, uma vez que ordenou aquilo, isto n\~ao lhe exime de erros. O simples fato de utilizar o \R~n\~ao significa que tudo que fez est\'a correto! O programa executar\'a exatamente o que voc\^e ordenar, \emph{da forma que voc\^e ordernar}. Portanto, lembre-se da m\'axima: \textrm{\textsc{O \R~n\~ao erra, quem erra \'e o operador}}!
+
+
+\subsubsection{Expandindo as capacidades - Pacotes}
+Al\'em do conjunto b\'asico de funcionalidades, o \R pode ser expandido por meio de \emph{pacotes}. Estes pacotes nada mais s\~ao do que um conjunto fun\c{c}\~oes, em geral com um tema espec\'ifico e com um grupo de informa\c{c}\~oes associadas, como uma p\'agina de ajuda. Os pacotes podem ser obtidos de diferentes formas e reposit\'orios, sendo a mais tradicional o download atrav\'es do site do \textrm{CRAN\footnote{O CRAN n\~ao \'e o \'unico reposit\'orio, outros como R-Forge, Github e Bioconductor cont\^em diversos pacotes!}}, mencionado anteriormente. Esta forma apresenta a vantagem de que uma vez baixado o arquivo ele pode ser compartilhado sem acesso \`a internet. Quando o acesso \'e poss\'ivel, entretanto, a forma mais comum \'e mesmo fazer o download direto do ambiente \R. O \rstudio tamb\'em apresenta uma funcionalidade para baixar pacotes, que pode ser observada nas abas do quadro inferior direito Figura~\ref{fig01}\footnote{Detalhes de como baixar pacotes e utilizar a ajuda na se\c{c}\~ao seguinte.}.
+
+\subsubsection{As regras do jogo, o que fazer e o que \textbf{n\~ao} fazer no \R.}
+Apesar de consistir de uma linguagem relativamente simples, alguns esclarecimentos s\~ao necess\'arios antes de nos aventurarmos pelo programa. Tente gravar desde j\'a estes passos b\'asicos, pois eles lhe evitar\~ao uma s\'erie de erros no futuro. S\~ao eles:
+\begin{itemize}
+\item Para o programa \emph{MAI\'USCULAS} s\~ao diferentes de \emph{min\'usculas}. Ou seja, o \R~n\~ao funciona como o Google, e n\~ao acha que "Voc\^e quis dizer \dots". Portanto, tenha aten\c{c}\~ao ao digitar, pois \emph{nome}~$\neq$~\emph{Nome}.
+\item Sinais especiais (\emph{e.g.} $\alpha, \beta, \mu$, \&, \$, \dots) , acentua\c{c}\~oes ou espa\c{c}os n\~ao s\~ao bem vistos em quase nenhuma linguagem de programa\c{c}\~ao. O mesmo vale para o \R, se n\~ao quiser problemas, n\~ao use estes caracteres. Para os espa\c{c}os, a dica \'e usar o s\'imbolo "\_" , como por exemplo em \emph{nome\_arquivo}. 
+\item Por ser um programa em linhas de comando, procure usar nomes simples, f\'aceis de repetir.
+\item O \R~usa \emph{ponto} como separador de decimais por padr\~ao.
+\item Como pode ser observado na Figura~\ref{fig01}, o s\'imbolo \# permite fazer coment\'arios que n\~ao ser\~ao executados como comandos. Use a abuse desta facilidade para comentar seus \emph{scripts}\footnote{Script \'e o nome dado \`a uma rotina feita pelo usu\'ario que pode ser gravada e re-executada ou compartilhada.}, isto vai facilitar muito na releitura da an\'alises por colegas ou mesmo por voc\^e daqui h\'a uns anos.
+\end{itemize}
+
+\section{O \R~na pr\'atica}
+Ent\~ao tudo certo, voc\^e j\'a entendeu os princ\'ipios b\'asicos do \R~e portanto est\'a pronto pra come\c{c}ar a se aventurar pelo programa e pelas suas infinitas possibilidades. Vamos come\c{c}ar aqui mostrando como instalar e utilizar pacotes. Em seguida, vamos passo-a-passo trabalhando em como utilizar o \R~, inicialmente como uma calculadora e paulatinamente passando para comandos mais completos, at\'e que estejamos preparados para encarar as an\'alises em si. A ideia principal \'e que consigamos fazer todo o processo no \R, sem aquela coisa enfadonha de ficar trocando de programa o tempo todo.
+\subsection{Como instalar e utilizar um pacote no \R?}
+Quaisquer das tr\^es formas que mencionamos para instalar um pacote no \R~ter\~ao como resultado a disponibilidade daquele determinado pacote para o usu\'ario "daquele momento em diante". Ou seja, uma vez instalado, o pacote torna-se dispon\'ivel no computador e n\~ao mais precisar\'a ser baixado\footnote{A menos, claro, que voc\^e formate o computador. Em alguns casos, ao atualizar o programa, voc\^e pode ter que reinstalar os pacotes. Mas calma, h\'a uma solu\c{c}\~ao simples pra isso!}. Caso tenha baixado o arquivo diretamente do \textrm{CRAN}, primeiramente assegure-se de que \'e o arquivo correto para seu sistema (\texttt{.zip, .tgz, .tar.gz}). Feito isso, basta ir em \textrm{Packages > Install Packages > Install from Package Archive (.zip, .tgz, .tar.gz)\footnote{Este passo pode variar de plataformas, mas de forma geral vai aparecer uma op\c{c}\~ao relacionada aos arquivos que baixou.}>Browse}. No \rstudio~a interface para instalac\c{c}\~ao de pacotes aparece como na Figura~\ref{fig02}. Esta forma de instalar tem a desvantagem de voc\^e ter que conhecer \textbf{todas} as depend\^encias e sub-depend\^encias do pacote que est\'a instalando. Em geral os pacotes podem chamar dentro deles pr\'oprios outros pacotes. Uma forma simples de resolver isso \'e instalar os pacotes diretamente pelo \R. O processo de instala\c{c}\~ao segue por esta mesma janela, mas mudando a op\c{c}\~ao 3 para Install from: Repository (CRAN). Neste caso, basta digitar o nome do pacote desejado na caixa embaixo da op\c{c}\~ao, em geral se a conex\~ao for razo\'avel, o pr\'oprio \rstudio~auto-completa o nome do pacote. Quando utilizar esta op\c{c}\~ao, assegure-se que o quadrinho \emph{Install dependencies} est\'a marcado, isso vai garantir que todos os pacotes dos quais o que voc\^e quer depende sejam instalados.\\
+\indent Apesar das facilidades oferecidas pelo \rstudio, muitos usu\'arios preferem a forma mais tradicional de instala\c{c}\~ao de um pacote, ou seja, por linhas de comando. De maneira direta, basta, j\'a de dentro do \R~digitar entre aspas, caso esteja instalando um pacote local:
+<<eval=FALSE>>=
+install.packages("C:/caminho_do_diretorio/tree_1.0-27.zip")
+@
+\hspace{.6cm}Caso esteja instalando pela internet, basta digitar o nome do pacote, entre aspas. Desta forma, o pacote que voc\^e deseja ser\'a instalado, bem como suas depend\^encias. Antente-se para o fato de que para tal voc\^e deve conhecer o nome do pacote e se ele \'e composto por letras mai\'usculas e min\'usculas, como \'e o caso do exemplo.
+<<eval=FALSE>>=
+install.packages("nome_Pacote", dependencies=TRUE)
+@
+
+
+\begin{center}
+ \begin{figure}[h!]
+\begin{center}
+\includegraphics[width=\textwidth]{./fig/packages_install.jpg}
+\end{center}
+\caption{Para instalar um pacote no \R, clique inicialmente em Pacakges (1), depois selecione a op\c{c}\~ao Install Packages (2) e por fim selecione de onde instalar em Install from: (3). Neste caso est\'a demonstrado como instalar via arquivo local, ainda voc\^e deve selecionar o arquivo que baixou no seu diret\'orio pelo bot\~ao Browse (4).}
+\label{fig02}
+ \end{figure}
+\end{center}
+
+\subsection{Carregando pacotes instalados}
+
+Ainda que vo\^e tenha baixado o pacote, ao iniciar o \R, este n\~ao se torna imediatamente dispon\'ivel. A ideia por tr\'as disso \'e simples, pra que tornar o programa pesado e carregar todos os pacotes? O usu\'ario pode carregar apenas aqueles pacotes que precisa, quando ele precisar! Vamos usar como exemplo aqui o pacote \texttt{ggplot2}, que ser\'a abordado pra frente, mas que consiste de um poderoso pacote para confec\c{c}\~ao de gr\'aficos no \R. Pois bem, o pacote j\'a foi instalado seguindo as instru\c{c}\~oes da se\c{c}\~ao anterior, agora \'e preciso cham\'a-lo. Isto \'e feito de forma bem simples, como demonstrado abaixo:
+<<>>=
+library(ggplot2)
+@
+\hspace{.6cm} Deste momento em diante, para esta se\c{c}\~ao, o pacote chamado est\'a dispon\'ivel e suas func\~oes podem ser utilizadas. Outra forma de carregar um pacote \'e utilizar \texttt{require(ggplot2)}, que faz virtualmente o mesmo do que fizemos com \texttt{library}, portanto voc\^e pode escolher o que mais lhe agrada. H\'a ainda como chamar apenas uma fun\c{c}\~ao espec\'ifica dentro do pacote, caso n\~ao ache necess\'ario carregar todo o pacote (e.g. porque ele \'e pesado). Para isto, vamos chamar apenas a fun\c{c}\~ao \texttt{C.score}, dentro do pacote \texttt{bipartite}:
+<<eval=FALSE>>=
+bipartite::C.score(web, FUN = mean, ...)
+@
+\hspace{.6cm} Isto carregar\'a apenas esta fun\c{c}\~ao deste pacote apenas para este uso. Caso deseje usar esta ou outra fun\c{c}\~ao deste pacote, dever\'a repetir o processo.
+
+\subsection{Opera\c{c}\~oes matem\'aticas b\'asicas no \R}
+Podemos iniciar o uso do programa fazendo opera\c{c}\~oes matem\'aticas b\'asicas no \R. Vejam o exemplo abaixo:
+<<>>=
+5+8
+@
+\Hspace{.6cm} O \R~retorna o valor da soma, antecedido pelo $[1]$. Este n\'umero inicial indica que o elemento \Sexpr{5+8} encontra-se na posi\c{c}\~ao 1 deste argumento. Veremos que para argumentos com v\'arios elementos (vetores), esta posi\c{c}\~ao passa a ser uma importante ferramenta. Da mesma forma que a soma, podemos proceder com todas as outras opera\c{c}\~oes b\'asicas:
+
+<<>>=
+#Subtracao - neste caso o valor e mesmo negativo
+5-8
+#Multiplicacao
+5*8
+#Divisao
+5/8
+#Potencia
+5^8 #5 elevado a 8
+@
+\hspace{.6cm} Certamente podemos agrupar estas opera\c{c}\~oes, desde que tomemos o devido cuidado em garantir a ordem das opera\c{c}\~oes. Utilize quantos par\^entesis forem necess\'arios para garantir a ordem que deseja. Imagine que queremos fazer 5 somado ao n\'umero 12, depois dividir isto por 8 e depois elevar isto \`a 5. Veja que no primeiro caso, n\~ao me cuidei de separar as opera\c{c}\~oes, e como a pot\^encia tem prioridade sobre a divis\~ao e esta sobre a soma, o resultado final seria errado!
+<<>>=
+#O resultado da operacao abaiso estara errado!
+5+12/8^5 
+#Agora sim, ao colocarmos os devidos parentesis!
+((5+12)/8)^5 
+@
+
+\hspace{.6cm} Agora podemos partir pra opera\c{c}\~oes mais complicadas. Estas v\~ao estar contidas dentro de fun\c{c}\~oes, j\'a dispon\'iveis no pacote base do \R. Vamos ver algumas delas:
+<<>>=
+#Modulo de um numero ou operacao, p.ex. nosso 5-8
+abs(5-8) 
+#Raiz quadrada, do ingles square root
+sqrt(81)
+#Uma dizima periodica, sem arredondar.
+10/3 
+# Agora, arredondado para 2 casas
+round(10/3, 2) 
+#Logaritimo - por padrao, o R faz ln
+log(25)
+#Log(1+x), util quando temos valores zero
+#Impossivel de calcular, veja:
+log(0) 
+#Agora esta funcao adiciona 1 ao valor 0 e calcula :-)
+log1p(0) 
+@
+
+\hspace{.6cm} Posso pedir o \R~tamb\'em para analisar igualdades e me retornar se elas s\~ao verdadeiras ou falsas. Vamos usar o exemplo anterior e verificar se \texttt{log1p(0)} \'e mesmo igual ao \texttt{log(1)}. Para conferir a igualdade, a sintaxe do \R~é um sinal duplo de igual. Se a igualdade for verdadeira, o programa me retornar\'a \color{green} \texttt{TRUE}\color{black} , se n\~ao for, ele retornar\'a \color{red} \texttt{FALSE} \color{black} , veja abaixo:
+<<>>=
+log1p(0)==log(1)
+@
+
+\subsection{Conseguindo ajuda \textit{dentro} do \R}
+Tudo indo muito bem at\'e agora, mas suponhamos que precisamos fazer o \texttt{log(25)}, mas n\~ao na base natural, e sim na base 9. Entretanto eu nunca precisei disso e n\~ao sei bem como implementar este caso. Simples! Posso pedir para ler a ajuda associada a esta fun\c{c}\~ao. H\'a diferentes formas de obter essa ajuda, algumas com resultados diferentes.
+
+<<eval=FALSE>>=
+#Me mostra o documento de ajuda associado a funcao.
+help(log) 
+#Um atalho para help(log).
+?log 
+#procura por "log" em todos os pacotes ja instalados.
+help.search("log") 
+#Um atalho para help.search("log"), atente-se para as aspas!!
+??"log" 
+#Procura por "log" em todos os pacotes disponiveis no R-Project.
+RSiteSearch("log") 
+@
+
+\hspace{.6cm} Descobri pela op\c{c}\~ao \texttt{?log} que a sintaxe da fun\c{c}\~ao para o que quero \'e \texttt{log(x, base=9)} e tamb\'em descobri que h\'a um atalho para bases 2 e 10, sendo \texttt{log2(x)} e \texttt{log10(x)}. Isto nos leva \`a seguinte quest\~ao: o que encontro na ajuda do \R? Os seguintes elementos est\~ao presentes:
+\begin{itemize}
+\item \emph{Description} - Uma (breve) descri\c{c}\~ao do que faz aquela determinada fun\c{c}\~ao
+\item \emph{Usage} - A sintaxe propriamente dita da fun\c{c}\~ao, quais os argumentos ela exige e quais podem ser modificados. Em geral, se os argumentos aparecem sozinhos, eles \emph{devem} ser fornecidos. Quando aparecem seguidos de um "igual alguma coisa", este \'e o padr\~ao e pode ser modificado. 
+\item \emph{Arguments} - Uma breve descri\c{c}\~ao dos argumentos da fun\c{c}\~ao.
+\item \emph{Details} - (Poucos) detalhes sobre aquela determinada fun\c{c}\~ao e seus argumentos.
+\item \emph{Value} - Qual o resultado, ou seja, o que voc\^e obtem ao rodar esta fun\c{c}\~ao.
+\item \emph{Warning} - Como o nome diz, algum alerta que o autor do pacote julgue que deva ser considerado.
+\item \emph{Note} - Algumas notas extras sobre a fun\c{c}\~ao.
+\item \emph{Authors} - Autores.
+\item \emph{References} - Refer\^encias para leitura.
+\item \emph{See also} - Demais fun\c{c}\~oes que o autor recomenda voc\^e olhar. 
+\item \emph{Examples} - Um exemplo de uso da fun\c{c}\~ao, para executar, basta copiar e colar no \textrm{Console}.
+\end{itemize}
+
+\section{Vetores}
+
+Uma vari\'avel pode conter n\~ao apenas um valor, mas uma \emph{cole\c{c}\~ao de valores ou elementos} armazenados nela. Os vetores s\~ao objetos capazes de armazenar diversos elementos "enfileirados" ou (usando uma express\~ao mais elegante) de forma \emph{unidimensional}. Os exemplos anteriores que trabalhamos nada mais s\~ao do que vetores com um \'unico elemento. Nos exemplos seguintes, veremos vetores mais complexos.\\
+
+\indent \'E importanto ressaltar que o Vetor (vector) \'e a classe\footnote{Veremos esse conceito de classes com detalhe.} fundamental do \R. As opera\c{c}\~oes efetuadas nessa classe s\~ao o princ\'ipio para a manipula\c{c}\~ao de todos os objetos do \R. Portanto, observe atentamente as opera\c{c}\~oes demonstradas a seguir e procure pratic\'a-las.
+
+Para criar um vetor no \R, precisamos basicamente de tr\^es elementos:\\
+
+\begin{enumerate}
+\item Um nome pra este vetor. Este nome pode ser o que voc\^e bem entender\footnote{Respeitando o que dissemos acima sobre uso de caracteres.}, e ser\'a usado nas pr\'oximas vezes que precisar chamar este vetor.
+\item A designa\c{c}\~ao do conte\'udo deste vetor\footnote{Voc\^e pode criar um vetor sozinho, sem a designa\c{c}\~ao, mas via de regra isso \'e in\'util para nossos prop\'ositos}. Para designar um conte\'udo a um nome no \R, utilizamos o sinal "$<-$" ou o sinal de "$=$". A seta ("$<-$") pode ser prefer\'ivel pois n\~ao se confunde com nenhuma igualdade. 
+\item O corpo do vetor propriamente dito. Por padr\~ao, ap\'os uma designa\c{c}\~ao, o \R~espera apenas um \'unico elemento. Caso desejemos mais de um elemento seja entendido, devemos adicion\'a-los dentro de \texttt{c()}, avisando assim que quero concatenar os elementos.
+\end{enumerate}
+\hspace{.6cm} Muito cuidado para n\~ao misturar n\'umeros e caracteres! A menos que saiba exatamente o que est\'a fazendo, de maneira geral, a presen\c{c}a de um caracter (letra, v\'irgula, palavra) no meio de um vetor faz com que o \R~o entenda como caracter, mesmo que voc\^e n\~ao ache isso!
+
+\subsection{Modos de um vetor}
+
+Os vetores podem ser classificados quanto ao modo dos elementos que armazenam como:\\
+\begin{itemize}
+\item Vetor num\'erico (numeric vector): Armazena n\'umeros e os entende como tais;
+\item Vetor de caracteres (character vector): Armazena caracteres (letras ou os s\'imbolos)
+\item Vetor l\'ogico (logical vector): Armazena elementos booleanos (TRUE, FALSE)
+\end{itemize}
+
+Uma importante caracter\'istica de vetores \'e que eles s\~ao \emph{at\^omicos}, e portanto comportam apenas um modo de elemento. A tentativa de colocar elementos de mais de um modo em um vetor for\c{c}ar\'a \---- \emph{coerce} \---- todos os elementos para o modo dominante segundo a regra:~\emph{character $>$ numerical $>$ logical}.
+
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+%%%%%%%ADICIONAR AQUI A TABELA USADA NOS EXEMPLOS 
+%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%
+\subsubsection{Vetores num\'ericos}
+Vetores num\'ericos s\~ao portanto aqueles vetores que cont\'em somente n\'umeros como elementos e os interpreta como tal. Vamos criar aqui os dados que utilizamos no cap\'itulo de regress\~ao. Ao criar o vetor, como n\~ao mandamos fazer nada al\'em de criar, nenhuma mensagem ser\'a exibida, a menos que pe\c{c}amos pra ver o vetor, vejam abaixo:
+
+<<>>=
+dist <- c(0.00,0.60,1.20,1.80,2.40,3.00,3.60,4.20,4.80,5.40,6.00,6.60,7.20,7.80,8.40,9.00,0.00,0.77,1.54,2.31,3.08,3.85,4.62,5.38,6.15,6.92,7.69,8.46,9.23,10.00)
+insetos <- c(5.5,6.2,5.2,3.9,4.4,3.4,4.3,5.0,4.1,3.7,2.8,1.3,3.1,0.0,2.2,1.3,6.0,5.6,4.6,5.5,4.4,4.9,4.3,4.6,3.1,3.2,2.5,3.3,2.1,0.8)
+@
+
+E podemos analisar a rela\c{c}\~ao entre estas duas vari\'aveis, gerando a tabela de ANOVA que vimos no texto:
+
+<<>>=
+mreg <- lm(insetos~dist)
+anova(mreg,test="F")
+@
+
+E por fim, plotar o resultado em um gr\'afico %(Capitulo a parte somente sobre graficos?)
+
+<<label=quadradosMinimos,echo=FALSE,fig=TRUE,include=FALSE>>=
+plot(dist,insetos,xlab='distância', ylab='média de insetos')
+abline(mreg)
+@
+
+
+@
