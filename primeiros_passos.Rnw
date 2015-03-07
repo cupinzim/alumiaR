@@ -15,7 +15,7 @@
 
 \chapter{Escolha de um software estat\'istico - Apresenta\c{c}\~ao do software R}
 
-Agora j\'a aprendemos os conceitos de estat\'istica e sabemos os princ\'ipios gerais das principais an\'alises, podemos lan\c{c}ar m\~ao de um software para nos poupar de fazer as contas. Uma no\c{c}\~ao importante de termos em mente neste momento \'e que, independente do software de escolha, ele n\~ao vale de nada se voc\^e n\~ao souber contar em detalhes como a coisa foi feita. Portanto, independente da sua escolha, o melhor software \'e aquele que voc\^e domina o como e, principalmente, o porque das coisas. Dentre as diversas op\c{c}\~oes, h\'a softwares pagos e n\~ao pagos do mercado, de c\'odigo aberto e fechado e por a\'i vai. Optaremos por utilizar neste livro um software gratuito, de c\'odigo aberto e que conta com grande aceita\c{c}\~ao no meio cient\'ifico, utilizaremos o software R. 
+Agora j\'a aprendemos os conceitos de estat\'istica e sabemos as carater\'isticas gerais das principais an\'alises, podemos lan\c{c}ar m\~ao de um software para nos poupar de fazer as contas. Uma no\c{c}\~ao importante de termos em mente neste momento \'e que, independente do software de escolha, ele n\~ao vale de nada se voc\^e n\~ao souber contar em detalhes como a coisa foi feita. Portanto, independente da sua escolha, o melhor software \'e aquele que voc\^e domina o como e, principalmente, o porque das coisas. Dentre as diversas op\c{c}\~oes, h\'a softwares pagos e n\~ao pagos do mercado, de c\'odigo aberto e fechado e por a\'i vai. Optaremos por utilizar neste livro um software gratuito, de c\'odigo aberto e que conta com grande aceita\c{c}\~ao no meio cient\'ifico, utilizaremos o software R. 
 
 \begin{framed}
 Após este módulo você será capaz de:
